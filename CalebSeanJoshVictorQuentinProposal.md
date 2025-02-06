@@ -48,4 +48,6 @@ This project will sovle the problem of human error on roads and remove the possi
 ### Outline of Development Technology
 
 - C++ langauge
-- Based on FreeRTOS
+- Based on QNX for RTOS implemetation
+- QT will be used for the visual representation of the GUI
+- IPC model?
