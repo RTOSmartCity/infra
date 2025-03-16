@@ -3,6 +3,10 @@ name: Deploy Cluster
 on:
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: terraform
+
 jobs:
   deploy:
     runs-on: ubuntu-latest

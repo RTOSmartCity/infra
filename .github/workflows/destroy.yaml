@@ -3,6 +3,11 @@ name: Destroy cluster
 on:
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: terraform
+
+
 jobs:
   destroy:
     runs-on: ubuntu-latest
