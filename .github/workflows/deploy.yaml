@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Terraform
@@ -27,14 +27,14 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Initialize Terraform
+      - name: Terraform Init
         run: terraform init
 
-      - name: Validate Terraform
-        run: terraform validate
+      - name: Terraform Validate
+        run: terraform validate -no
 
-      - name: Plan Terraform
+      - name: Terraform plan
         run: terraform plan -out=tfplan
 
-      - name: Apply Terraform
+      - name: Terraform Apply
         run: terraform apply -auto-approve tfplan

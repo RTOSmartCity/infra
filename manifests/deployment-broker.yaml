@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qnx-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qnx-client
+  template:
+    metadata:
+      labels:
+        app: qnx-client
+    spec:
+      containers:
+        - name: qnx-client
+          image: alpine/curl  # Replace with your real app image
+          command: ["sh", "-c", "while true; do curl http://10.0.1.50:9000; sleep 10; done"]

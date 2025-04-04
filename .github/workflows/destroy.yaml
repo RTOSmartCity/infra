@@ -1,4 +1,4 @@
-name: Destroy cluster
+name: Destroy Cluster
 
 on:
   workflow_dispatch:
@@ -7,13 +7,12 @@ defaults:
   run:
     working-directory: terraform
 
-
 jobs:
   destroy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Terraform
@@ -28,11 +27,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Initialize Terraform
+      - name: Terraform Init
         run: terraform init
 
-      - name: Plan Destroy
+      - name: Terraform Plan
         run: terraform plan -destroy -out=tfplan
 
-      - name: Destroy Terraform Resources
+      - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
