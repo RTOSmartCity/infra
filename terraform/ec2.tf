@@ -22,22 +22,6 @@ resource "aws_security_group" "ec2_sg" {
   }
 }
 
-resource "aws_eip" "instance_1_eip" {
-  domain = "vpc"
-
-  tags = {
-    Name = "smart-city-instance-1-eip"
-  }
-}
-
-resource "aws_eip" "instance_2_eip" {
-  domain = "vpc"
-
-  tags = {
-    Name = "smart-city-instance-2-eip"
-  }
-}
-
 resource "aws_instance" "instance_1" {
   ami                    = "ami-02bd7b9e243f4d1bc"
   instance_type          = "t4g.micro"
@@ -90,26 +74,10 @@ resource "aws_instance" "instance_2" {
 
 resource "aws_eip_association" "instance_1_eip_assoc" {
   instance_id   = aws_instance.instance_1.id
-  allocation_id = aws_eip.instance_1_eip.id
+  allocation_id = "eipalloc-0bfccb260d4a200b1"
 }
 
 resource "aws_eip_association" "instance_2_eip_assoc" {
   instance_id   = aws_instance.instance_2.id
-  allocation_id = aws_eip.instance_2_eip.id
-}
-
-output "instance_1_public_ip" {
-  value = aws_eip.instance_1_eip.public_ip
-}
-
-output "instance_2_public_ip" {
-  value = aws_eip.instance_2_eip.public_ip
-}
-
-output "instance_1_public_dns" {
-  value = aws_eip.instance_1_eip.public_dns
-}
-
-output "instance_2_public_dns" {
-  value = aws_eip.instance_2_eip.public_dns
+  allocation_id = "eipalloc-07a52dbb36855de0a"
 }
