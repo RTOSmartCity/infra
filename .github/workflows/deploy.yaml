@@ -31,7 +31,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Validate
-        run: terraform validate -no
+        run: terraform validate 
 
       - name: Terraform plan
         run: terraform plan -out=tfplan
