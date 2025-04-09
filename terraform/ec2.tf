@@ -33,6 +33,7 @@ resource "aws_instance" "instance_1" {
               #!/bin/bash
               qconn port=8000
               ln -s /lib/libsocket.so.4 /lib/libsocket.so.3
+              SERVER_IP=34.194.7.63
               EOF
 
   root_block_device {
@@ -60,6 +61,7 @@ resource "aws_instance" "instance_2" {
               #!/bin/bash
               qconn port=8000
               ln -s /lib/libsocket.so.4 /lib/libsocket.so.3
+              SERVER_IP=3.226.148.224
               EOF
 
   root_block_device {
