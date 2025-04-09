@@ -2,8 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rtos-monitor
+  namespace: monitor
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: rtos-monitor
   template:
     metadata:
       labels:

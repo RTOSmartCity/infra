@@ -65,6 +65,27 @@ resource "aws_instance" "instance_2" {
   }
 }
 
+resource "aws_instance" "instance_3" {
+  ami                    = "ami-02bd7b9e243f4d1bc"
+  instance_type          = "t4g.micro"
+  subnet_id              = module.vpc.public_subnets[0]
+  vpc_security_group_ids = [aws_security_group.ec2_sg.id]
+  key_name               = "blls"
+
+  user_data = file("${path.module}/instance3-userdata.sh")
+
+  root_block_device {
+    volume_size = 20
+    volume_type = "gp3"
+  }
+
+  tags = {
+    Name        = "smart-city-instance-3"
+    Environment = "smart-city"
+    Terraform   = "true"
+  }
+}
+
 resource "aws_eip_association" "instance_1_eip_assoc" {
   instance_id   = aws_instance.instance_1.id
   allocation_id = "eipalloc-0bfccb260d4a200b1"
@@ -73,4 +94,9 @@ resource "aws_eip_association" "instance_1_eip_assoc" {
 resource "aws_eip_association" "instance_2_eip_assoc" {
   instance_id   = aws_instance.instance_2.id
   allocation_id = "eipalloc-07a52dbb36855de0a"
+}
+
+resource "aws_eip_association" "instance_3_eip_assoc" {
+  instance_id   = aws_instance.instance_3.id
+  allocation_id = "eipalloc-08ecd6c1b72283ce5"
 }

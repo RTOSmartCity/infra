@@ -13,6 +13,6 @@ else
 fi
 
 qconn port=8000 || echo "qconn command failed"
-export SERVER_IP=34.194.7.63
-echo "SERVER_IP=$SERVER_IP" >> /etc/profile
+export SERVER_IP=13.219.193.24
+echo "SERVER_IP=$SERVER_IP" >> /etc/environment
 echo "User data script completed"
