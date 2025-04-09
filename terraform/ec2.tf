@@ -29,12 +29,7 @@ resource "aws_instance" "instance_1" {
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   key_name               = "blls"
 
-  user_data = <<-EOF
-              #!/bin/bash
-              qconn port=8000
-              ln -s /lib/libsocket.so.4 /lib/libsocket.so.3
-              SERVER_IP=34.194.7.63
-              EOF
+  user_data = file("${path.module}/instance1-userdata.sh")
 
   root_block_device {
     volume_size = 20
@@ -56,13 +51,7 @@ resource "aws_instance" "instance_2" {
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   key_name               = "blls"
 
-
-  user_data = <<-EOF
-              #!/bin/bash
-              qconn port=8000
-              ln -s /lib/libsocket.so.4 /lib/libsocket.so.3
-              SERVER_IP=3.226.148.224
-              EOF
+  user_data = file("${path.module}/instance2-userdata.sh")
 
   root_block_device {
     volume_size = 20
