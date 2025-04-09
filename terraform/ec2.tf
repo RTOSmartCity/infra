@@ -32,6 +32,7 @@ resource "aws_instance" "instance_1" {
   user_data = <<-EOF
               #!/bin/bash
               qconn port=8000
+              ln -s /lib/libsocket.so.4 /lib/libsocket.so.3
               EOF
 
   root_block_device {
@@ -58,6 +59,7 @@ resource "aws_instance" "instance_2" {
   user_data = <<-EOF
               #!/bin/bash
               qconn port=8000
+              ln -s /lib/libsocket.so.4 /lib/libsocket.so.3
               EOF
 
   root_block_device {
